@@ -7,6 +7,7 @@ function singleTemplate(data) {
 			<li> <i class="fa fa-phone-square "></i><span>Phone Number: </span>${ data.phoneNumber }</li>
 			<li> <i class="fa fa-globe "></i><span>Location:</span> ${ data.location }</li>
 		</ul>
+		<button class="backBtn">Back</button>
 		`
 };
 

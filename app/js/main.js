@@ -93,10 +93,6 @@ var appElement = (0, _jquery2['default'])('.app');
 var router = new _router2['default'](appElement);
 router.start();
 
-window.router = router;
-
-console.log('Hello, World');
-
 },{"./ajax_setup":1,"./router":5,"jquery":10}],5:[function(require,module,exports){
 'use strict';
 
@@ -135,6 +131,7 @@ var Router = _backbone2['default'].Router.extend({
 
   initialize: function initialize(appElement) {
     this.$el = appElement;
+    this.$btn = '.backBtn';
 
     this.contact = new _contact_collection2['default']();
 
@@ -153,24 +150,26 @@ var Router = _backbone2['default'].Router.extend({
   },
 
   showSingle: function showSingle(contactId) {
-    var _this = this;
-
     var single = this.contact.get(contactId);
+    var router = this;
 
     if (single) {
       // todos have fetched and we grabbed the one we want
       this.$el.html((0, _viewsSingle2['default'])(single.toJSON()));
     } else {
-      (function () {
-        // todos not fetched so we need to load the one we want
-        var router = _this;
-        single = _this.contact.add({ objectId: contactId });
-        _this.showSpinner();
-        single.fetch().then(function () {
-          router.$el.html((0, _viewsSingle2['default'])(single.toJSON()));
-        });
-      })();
+      // todos not fetched so we need to load the one we want
+      single = this.contact.add({ objectId: contactId });
+      this.showSpinner();
+      single.fetch().then(function () {
+        router.$el.html((0, _viewsSingle2['default'])(single.toJSON()));
+      });
     }
+
+    this.back = (0, _jquery2['default'])('.backBtn');
+
+    this.back.on('click', function () {
+      router.navigate('', { trigger: true });
+    });
   },
 
   showContact: function showContact() {
@@ -221,7 +220,7 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 function singleTemplate(data) {
-	return "\n\t\t<h2> Contact List </h2>\n\t\t<ul>\n\t\t\t<li> <i class=\"fa fa-user \"></i> <span>Name:</span> " + data.name + "</li>\n\t\t\t<li> <i class=\"fa fa-envelope \"></i><span>Email:</span> " + data.email + "</li>\n\t\t\t<li> <i class=\"fa fa-phone-square \"></i><span>Phone Number: </span>" + data.phoneNumber + "</li>\n\t\t\t<li> <i class=\"fa fa-globe \"></i><span>Location:</span> " + data.location + "</li>\n\t\t</ul>\n\t\t";
+	return "\n\t\t<h2> Contact List </h2>\n\t\t<ul>\n\t\t\t<li> <i class=\"fa fa-user \"></i> <span>Name:</span> " + data.name + "</li>\n\t\t\t<li> <i class=\"fa fa-envelope \"></i><span>Email:</span> " + data.email + "</li>\n\t\t\t<li> <i class=\"fa fa-phone-square \"></i><span>Phone Number: </span>" + data.phoneNumber + "</li>\n\t\t\t<li> <i class=\"fa fa-globe \"></i><span>Location:</span> " + data.location + "</li>\n\t\t</ul>\n\t\t<button class=\"backBtn\">Back</button>\n\t\t";
 };
 
 exports["default"] = singleTemplate;

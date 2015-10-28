@@ -13,6 +13,7 @@ let Router = Backbone.Router.extend({
 
   initialize: function(appElement) {
     this.$el = appElement;
+    this.$btn = ('.backBtn')
 
     this.contact = new contactCollection();
 
@@ -24,6 +25,7 @@ let Router = Backbone.Router.extend({
       router.navigate(`single/${contactId}`);
       router.showSingle(contactId);
     });
+
   },
 
   showSpinner: function() {
@@ -34,19 +36,26 @@ let Router = Backbone.Router.extend({
 
   showSingle: function(contactId) {
     let single = this.contact.get(contactId);
+    let router = this;
 
     if (single) {
       // todos have fetched and we grabbed the one we want
       this.$el.html( singleTemplate(single.toJSON()) );
     } else {
       // todos not fetched so we need to load the one we want
-      let router = this;
       single = this.contact.add({objectId: contactId});
       this.showSpinner();
       single.fetch().then(function() {
         router.$el.html( singleTemplate(single.toJSON()) );
       });
     }
+
+    this.back = $('.backBtn');
+
+    this.back.on('click', function() {
+      router.navigate('', {trigger: true});
+    });
+
 
   },
 
