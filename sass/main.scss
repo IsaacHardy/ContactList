@@ -1,6 +1,82 @@
 @import "bourbon";
 @import "font-awesome";
 
-body {
-  background: #e2ebf3;
+$primaryColor: red;
+
+.app {
+  width: 40%;
+  margin-left: 10%;
+  padding-bottom: 30px;
+  border: 1px solid;
+}
+
+h2 {
+  font-size: 50px;
+  color: #fff;
+  background-color: $primaryColor;
+  width: 100%;
+  text-align: center;
+  margin-top: 0;
+}
+
+.singleH2 {
+  height: 150px;
+
+  .fa {
+    margin-top: 35px;
+
+    &:before {
+    	font-size: 70px;
+    }
+  }
+}
+
+ul {
+  padding-left: 0;
+}
+
+li {
+	list-style: none;
+  margin-top: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-bottom: 1px solid;
+  padding-bottom: 20px;
+}
+
+
+.fa {
+  margin-right: 10px;
+}
+
+.fa-wheelchair:before {
+  content: "";
+  font-size: 30px;
+  background-color: #DFE3E4;
+  padding: 10px;
+  border-radius: 50%;
+  color: black;
+}
+
+.fa-long-arrow-left:before {
+  content: "";
+  font-size: 40px;
+}
+
+.backBtn {
+  padding: 5px 25px;
+  position: absolute;
+  top: 10px;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.contact-list-item {
+	cursor: pointer;
+}
+
+.contact-list-item:hover > .fa-wheelchair:before {
+	background-color: red;
+	color: white;
 }

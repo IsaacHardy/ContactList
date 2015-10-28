@@ -220,7 +220,7 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 function singleTemplate(data) {
-	return "\n\t\t<h2> Contact List </h2>\n\t\t<ul>\n\t\t\t<li> <i class=\"fa fa-user \"></i> <span>Name:</span> " + data.name + "</li>\n\t\t\t<li> <i class=\"fa fa-envelope \"></i><span>Email:</span> " + data.email + "</li>\n\t\t\t<li> <i class=\"fa fa-phone-square \"></i><span>Phone Number: </span>" + data.phoneNumber + "</li>\n\t\t\t<li> <i class=\"fa fa-globe \"></i><span>Location:</span> " + data.location + "</li>\n\t\t</ul>\n\t\t<button class=\"backBtn\">Back</button>\n\t\t";
+	return "\n\t\t<h2 class=\"singleH2\"><i class=\"fa fa-wheelchair\"></i></h2>\n\t\t<ul>\n\t\t\t<li> <i class=\"fa fa-user \"></i>" + data.name + "</li>\n\t\t\t<li> <i class=\"fa fa-envelope \"></i>" + data.email + "</li>\n\t\t\t<li> <i class=\"fa fa-phone-square \"></i>" + data.phoneNumber + "</li>\n\t\t\t<li> <i class=\"fa fa-globe \"></i>" + data.location + "</li>\n\t\t</ul>\n\t\t<button class=\"backBtn\"><i class=\"fa fa-long-arrow-left\"></i></button>\n\t\t";
 };
 
 exports["default"] = singleTemplate;
