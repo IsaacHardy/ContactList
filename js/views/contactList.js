@@ -1,7 +1,9 @@
 function proccessData(data) {
   return data.map(function(item) {
     return `
-      <li class='contact-list-item' data-contact-id="${item.objectId}">${item.name}</li>
+      <li class='contact-list-item' data-contact-id="${item.objectId}">
+      	<i class="fa fa-wheelchair">
+      	</i>${item.name}</li>
     `
   }).join('');
 }
@@ -13,4 +15,4 @@ function contactTemplate(data) {
   `;
 }
 
-export default contactTemplate
+export default contactTemplate;
